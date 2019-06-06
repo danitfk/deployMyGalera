@@ -1,0 +1,40 @@
+---
+- name: "Disable Apparmor"
+  service: name="apparmor" state="stopped" enabled="no"
+
+- name: "Install package dependecies"
+  apt: name="software-properties-common" state="present"
+
+- name: "Import MariaDB Repository Key into APT"
+  apt_key: id="{{ apt_key_id }}" keyserver="{{ apt_key_server}}" state="present"
+
+- name: "Add MariaDB repository in APT"
+  apt_repository: repo="deb http://mirror.netcologne.de/mariadb/repo/{{ mariadb_version }}/ubuntu {{ ansible_distribution_release }} main" state="present" 
+
+- name: "Install MariaDB {{ mariadb_version}} and Galera"
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - mariadb-server-{{ mariadb_version }}
+    - mariadb-client-{{ mariadb_version }}
+    - mariadb-common
+    - galera-3
+
+- name: "Start and enable MariaDB server service" 
+  service: name="mariadb" state="started" enabled="yes"
+
+- name: "Set MySQL root password"
+  mysql_user: 
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_password }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    check_implicit_admin: "yes"
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost

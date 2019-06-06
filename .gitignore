@@ -1,0 +1,3 @@
+*.retry
+/main.yml
+/inventory

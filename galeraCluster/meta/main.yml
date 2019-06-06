@@ -1,0 +1,7 @@
+galaxy_info:
+  author: Daniel Gordi
+
+  license: The Unlicensed
+
+  min_ansible_version: 2.4
+

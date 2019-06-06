@@ -1,0 +1,5 @@
+---
+- hosts: galera
+  become: true
+  roles:
+  - galeraCluster

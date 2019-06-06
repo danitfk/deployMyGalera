@@ -1,0 +1,6 @@
+[all]
+node1	ansible_ssh_host="172.20.0.10"	ansible_ssh_port="2342"	ansible_user="ansictrl"	boostrap_node="true"
+node2	ansible_ssh_host="172.20.0.11"	ansible_ssh_port="2342"	ansible_user="ansictrl"
+node3	ansible_ssh_host="172.20.0.12"	ansible_ssh_port="2342"	ansible_user="ansictrl"
+node4	ansible_ssh_host="172.20.0.13"	ansible_ssh_port="2342"	ansible_user="ansictrl"
+node5	ansible_ssh_host="172.20.0.14"	ansible_ssh_port="2342"	ansible_user="ansictrl"

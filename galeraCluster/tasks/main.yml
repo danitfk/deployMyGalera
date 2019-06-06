@@ -1,0 +1,8 @@
+---
+- name: "Check Installation"
+  stat: path="/usr/sbin/mysqld"
+  register: mysqld
+
+- name: "Install MariaDB"
+  include_tasks: install.yml
+  when: mysqld.stat.exists == False

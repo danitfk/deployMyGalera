@@ -1,0 +1,22 @@
+[galera]
+# Mandatory settings
+wsrep_on=ON
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address="{{ galera_gcomm_address }}"
+wsrep_cluster_name="{{ galera_cluster_name }}"
+binlog_format=ROW
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+
+# Galera -> General optimization
+wsrep_retry_autocommit          = 1
+
+
+# Galera -> Synchronization thread optimization
+wsrep_slave_threads             = 80
+
+# GALERA -> Timeout optimization
+wsrep_provider_options          = "evs.send_window=4"
+wsrep_provider_options          = "evs.user_send_window=2"
+wsrep_provider_options          = "evs.inactive_check_period=PT1S"
+

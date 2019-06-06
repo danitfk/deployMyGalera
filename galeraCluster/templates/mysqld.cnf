@@ -1,0 +1,45 @@
+# MariaDB-specific config file.
+# Read by /etc/mysql/my.cnf
+
+[client]
+# Default is Latin1, if you need UTF-8 set this (also in server section)
+#default-character-set = utf8 
+
+[mysqld]
+#
+# * Character sets
+# 
+# Default is Latin1, if you need UTF-8 set all this (also in client section)
+#
+character-set-server            = utf8
+#collation-server               = utf8_general_ci 
+character_set_server            = utf8
+#collation_server               = utf8_general_ci 
+# Import all .cnf files from configuration directory
+
+## GENERAL
+bind-address                    = 0.0.0.0
+datadir                         = {{ db_datadir }}
+default_storage_engine          = InnoDB
+binlog_format                   = row
+innodb_autoinc_lock_mode        = 2
+innodb_flush_log_at_trx_commit  = 0
+sync_binlog                     = 0
+max_allowed_packet              = 256M
+max_connections                 = 2000
+table_open_cache                = 1000
+thread_cache_size               = 20
+query_cache_type                = 1
+query_cache_size                = 32M
+max_heap_table_size             = 128M
+open_files_limit                = 65535
+table_definition_cache          = 4096
+max_connect_errors              = 10000
+### InnoDB
+innodb_flush_method             = O_DIRECT
+innodb_log_files_in_group       = 2
+innodb_log_file_size            = 512M
+innodb_flush_log_at_trx_commit  = 1
+innodb_file_per_table           = 1
+innodb_buffer_pool_size         = {{ db_innodb_buffer_pool }}
+

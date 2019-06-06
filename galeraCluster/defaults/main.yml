@@ -1,0 +1,16 @@
+---
+# MariaDB Version
+mariadb_version: 10.3
+
+# MariaDB Repository
+apt_key_id: 0xF1656F24C74CD1D8
+apt_key_server: hkp://keyserver.ubuntu.com:80
+
+# Galera Cluster Configurations
+galera_cluster_name: mygaleracluster
+galera_gcomm_address : gcomm://172.27.12.24,172.27.12.25,172.27.12.26,172.27.12.27
+
+# MariaDB Configurations
+mysql_root_password: mySuperNonStrongPassword
+db_datadir: /var/lib/mysql
+db_innodb_buffer_pool: 2G
